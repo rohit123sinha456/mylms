@@ -17,20 +17,51 @@
                         <h4 class="card-title">Search Course Lessons</h4>
                         <p class="card-description">
                          
-                        </p>
-                        <form class="forms-sample" action="/admin/lessons/view" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Large select</label>
-                                <select class="form-control form-control-lg" id="courseid" name="courseid">
+                          <div class="table-responsive">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>
+                                    Lesson Name
+                                  </th>
+                                  <th>
+                                    Lesson Description
+                                  </th>
                                   
-                                  @foreach ($courses as $course)
-                                  <option value={{$course->id}}>{{$course->name}}</option>
-                                  @endforeach
-                                </select>
-                              </div>
-                            <button type="submit" class="btn btn-primary mb-2">Search Lessons</button>
-                        </form>
+                                  <th>
+                                    Actions
+                                  </th>
+                                  <th>
+                                    Status
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($courses as $item)
+                                <tr>
+                                  <td>
+                                   {{$item['name']}}
+                                  </td>
+                                  
+                                  <td>
+                                      {{$item['id']}}
+                                  </td>
+                                  
+                                  <td>
+                                      <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
+                                      <div class="btn-group" role="group" aria-label="Basic example">
+                                        <form action="/admin/lessons/view?courseid={{$item['id']}}" method="POST"> @csrf<button type="submit" class="btn btn-outline-secondary">View</button> </form>
+                                        </div>
+                                  </td>
+                                  <td class="py-1">
+                                    {{$item['status']}}
+                                  </td>
+                                </tr>
+                                @endforeach
+                      </tbody>
+                    </table>
+                  
+                  </div>
                       </div>
                     </div>
                   </div>
@@ -49,3 +80,11 @@
     </div>
     </body>
 </html>
+
+
+
+
+
+
+      
+    

@@ -12,34 +12,21 @@ use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\Controller;
 class LessonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         $allcourses = Course::all();
         return view('admindashboard.selectlessoncourse',['courses'=>$allcourses]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $allCourses = Course::all();
         return view('admindashboard.createlesson',['course'=>$allCourses]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $lesson = new Lesson;
@@ -51,12 +38,7 @@ class LessonController extends Controller
         return redirect('/admin/lessons/'.$lessonid);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $lessonid = $id;//$request->query('courseid');
@@ -66,43 +48,42 @@ class LessonController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+        $lessondetails = Lesson::find($id);
+        return view('admindashboard.editlesson',['item'=>$lessondetails]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
-        //
+        $lessondetails = Lesson::find($id);
+        $lessondetails->title = $request->title;
+        $lessondetails->content = $request->content;
+        $lessondetails->save();
+        return redirect('/admin/lessons/'.$id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $course = Lesson::destroy($id);
         return redirect('/admin/lessons/'.$id);
     }
+
+    public function publish($id)
+    {
+        $status_enum = ['enabled','disabled']; //change it to something dynamic, where it will take the value frm the enum class
+        $lessondetails = Lesson::find($id);
+        $new_status = array_values(array_diff($status_enum,[$lessondetails->status]));
+        $lessondetails->status = $new_status[0];
+        $lessondetails->save();
+        return redirect('/admin/lessons/');
+    }
     public function viewcourselessons(Request $request){
         // use some table or stuff/ try to deal with tables and searchable stuff
-        $courseid = $request->courseid;
+        $courseid = $request->query('courseid');
         $courselessons = Lesson::where('course_id',$courseid)->get();
         return view('admindashboard.showlessoncourse',['courses'=>$courselessons]);
     }

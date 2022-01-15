@@ -52,9 +52,9 @@
                                     <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                       <form action="/admin/lessons/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
-                                      <form action="/admin/lessons/{{$item['id']}}" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary">Edit</button> </form>
+                                      <form action="/admin/lessons/{{$item['id']}}/edit" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary">Edit</button> </form>
                                       <form action="/admin/lessons?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Delete</button> </form>
-                                      <form action="/admin/lessons?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Publish</button> </form>
+                                      <form action="/admin/lessons/{{$item['id']}}/publish" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Publish</button> </form>
                                     </div>
                                 </td>
                                 <td class="py-1">
