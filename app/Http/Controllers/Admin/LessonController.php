@@ -69,7 +69,7 @@ class LessonController extends Controller
     public function destroy($id)
     {
         $course = Lesson::destroy($id);
-        return redirect('/admin/lessons/'.$id);
+        return redirect('/admin/lessons/');
     }
 
     public function publish($id)

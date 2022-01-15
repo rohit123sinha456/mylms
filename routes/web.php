@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
+use App\Http\Controllers\Admin\StudentController;
 
 use Illuminate\Http\Request;
 
@@ -45,6 +46,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/publishcourse',[CourseController::class,'publishcourse'])->middleware('is_admin');
     Route::post('/lessons/view',[LessonController::class,'viewcourselessons'])->middleware('is_admin');
     Route::resource('/lessons',LessonController::class)->middleware('is_admin');
+    Route::resource('/students',StudentController::class)->middleware('is_admin');
 });
 
 Route::prefix('teacher')->group(function(){

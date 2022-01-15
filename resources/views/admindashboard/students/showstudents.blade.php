@@ -14,7 +14,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Courses </h4>
+                        <h4 class="card-title">Students </h4>
                         <p class="card-description">
                           Add class <code>.table-striped</code>
                         </p>
@@ -23,12 +23,14 @@
                             <thead>
                               <tr>
                                 <th>
-                                  Lesson Name
+                                  Course Name
                                 </th>
                                 <th>
-                                  Lesson Description
+                                  Course Description
                                 </th>
-                                
+                                <th>
+                                  Teacher
+                                </th>
                                 <th>
                                   Actions
                                 </th>
@@ -38,30 +40,38 @@
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($courses as $item)
-                              <tr>
-                                <td>
-                                 {{$item['title']}}
+                                @if ($students != NULL)
+                                @foreach ($students as $item)
+                                <tr>
+                                  <td>
+                                   {{$item['name']}}
+                                  </td>
+                                  
+                                  <td>
+                                      {{$item['description']}}
+                                  </td>
+                                  <td>
+                                    {{$item['teacher']}}
                                 </td>
-                                
-                                <td>
-                                    {{$item['content']}}
-                                </td>
-                                
-                                <td>
-                                    <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                      <form action="/admin/lessons/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
-                                      <form action="/admin/lessons/{{$item['id']}}/edit" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary">Edit</button> </form>
-                                      <form action="/admin/lessons/{{$item['id']}}" method="POST">@csrf @method('DELETE')<button type="submit" class="btn btn-outline-secondary">Delete</button> </form>
-                                      <form action="/admin/lessons/{{$item['id']}}/publish" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Publish</button> </form>
-                                    </div>
-                                </td>
-                                <td class="py-1">
-                                  {{$item['status']}}
-                                </td>
-                              </tr>
-                              @endforeach
+                                  <td>
+                                      <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
+                                      <div class="btn-group" role="group" aria-label="Basic example">
+                                        <form action="/admin/students/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
+                                        <form action="/admin/students/{{$item['id']}}/edit" method="GET"> <button type="submit" class="btn btn-outline-secondary">Edit</button> </form>
+                                        <form action="/admin/students/{{$item['id']}}" method="POST">@csrf @method('DELETE')<button type="submit" class="btn btn-outline-secondary">Delete</button> </form>
+                                      </div>
+                                  </td>
+                                  <td class="py-1">
+                                    {{$item['status']}}
+                                  </td>
+                                </tr>
+                                @endforeach
+                                  
+                                @else
+                                    
+                                <p>No Student Data</p>
+                                @endif
+                             
                             </tbody>
                           </table>
                       

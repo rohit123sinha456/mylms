@@ -35,7 +35,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#lesson-elements" aria-expanded="false" aria-controls="form-elements">
+        <a class="nav-link" data-toggle="collapse" href="#lesson-elements" aria-expanded="false" aria-controls="lesson-elements">
           <i class="icon-columns menu-icon"></i>
           <span class="menu-title">Lessons</span>
           <i class="menu-arrow"></i>
@@ -49,14 +49,15 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+        <a class="nav-link" data-toggle="collapse" href="#students" aria-expanded="false" aria-controls="students">
           <i class="icon-bar-graph menu-icon"></i>
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">Students</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="charts">
+        <div class="collapse" id="students">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/students">All Students</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/students/create">Create Students</a></li>
           </ul>
         </div>
       </li>
