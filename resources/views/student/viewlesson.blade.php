@@ -7,7 +7,7 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('layouts.navbar')
+    @include('student.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
               <div class="row">
@@ -41,27 +41,7 @@
                               </td>
                             </tr>
                             @endforeach
-                            </tbody>
-                          </table>
-
-
-
-                          <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th>
-                                  Registered Courses
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($studentcourses as $sc)
-                            <tr>
-                              <td>
-                               {{$sc['course_name']}}
-                              </td>
-                            </tr>
-                            @endforeach
+                              
                             </tbody>
                           </table>
                         </div>

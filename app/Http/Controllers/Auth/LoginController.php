@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Teacher;
+use App\Models\User;
+use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -22,11 +27,14 @@ class LoginController extends Controller
             session(['admin' => bcrypt('admin')]);
             return redirect('/admin/login');
         }
-        return redirect('/');
+        return redirect('/admin');
     }
     public function showadminLogin(Request $request){
-        $teacher = Teacher::all();
-        return view('admin',['teacher'=>$teacher]);
+        $teacher = Teacher::all()->count();
+        $student = User::all()->count();
+        $courses = Course::all()->count();
+        $lesson = Lesson::all()->count();
+        return view('admin',['teacher'=>$teacher,'student'=>$student,'courses'=>$courses,'lesson'=>$lesson]);
     }
     /*
     public function teacherLogin(Request $request)
@@ -40,7 +48,7 @@ class LoginController extends Controller
             return view('teacher');
         }
         return redirect()->route('login');
-    }
+    }*/
     public function studentLogin(Request $request)
     {
         $this->validate($request, [
@@ -48,10 +56,17 @@ class LoginController extends Controller
             'password' => 'required|min:2'
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return view('student');
+        if (Auth::guard('student')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $studentid = User::where('email',$request->email)->first();
+            session(['student' => Crypt::encryptString($studentid->id),'studid'=> Crypt::encryptString($studentid->id)]);
+            return redirect('/student/login');
         }
-        return redirect()->route('login');
-    }*/
+        return redirect('/student');
+    }
+    public function showstudentLogin(Request $request){
+        $courses = Course::all()->count();
+        $lesson = Lesson::all()->count();
+        return view('student.admin',['courses'=>$courses,'lesson'=>$lesson]);
+    }
 }
 

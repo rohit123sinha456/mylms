@@ -29,7 +29,6 @@
                             <label for="exampleInputEmail3">Content</label>
                             <textarea class="form-control" id="exampleTextarea1" rows="4" id="email" name="email">{{$item->email}}</textarea>
                         </div>
-                          
                           <button type="submit" class="btn btn-primary mr-2">Submit</button>
                           <a class="btn btn-light" href="/admin/courses">Cancel</a>
                         </form>

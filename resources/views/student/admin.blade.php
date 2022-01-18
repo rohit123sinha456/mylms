@@ -7,7 +7,7 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('layouts.navbar')
+    @include('student.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
               <div class="row">
@@ -66,7 +66,7 @@
                       <div class="card card-dark-blue">
                         <div class="card-body">
                           <p class="mb-4">Total Teachers</p>
-                          <p class="fs-30 mb-2">{{$teacher}}</p>
+                          <p class="fs-30 mb-2">hi</p>
                           <p>22.00% (30 days)</p>
                         </div>
                       </div>
@@ -77,7 +77,7 @@
                       <div class="card card-light-blue">
                         <div class="card-body">
                           <p class="mb-4">Total Students</p>
-                          <p class="fs-30 mb-2">{{$student}}</p>
+                          <p class="fs-30 mb-2">hi</p>
                           <p>2.00% (30 days)</p>
                         </div>
                       </div>

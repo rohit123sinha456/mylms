@@ -28,6 +28,14 @@
                             <label for="exampleInputEmail3">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                           </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Course</label>
+                            <select class="form-control form-control-lg" id="courseid" name="courseid">
+                                @foreach ($courses as $item)
+                                <option value={{$item->id}}>{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                          </div>
                           <button type="submit" class="btn btn-primary mr-2">Submit</button>
                           <button class="btn btn-light">Cancel</button>
                         </form>
