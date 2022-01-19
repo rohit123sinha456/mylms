@@ -25,11 +25,12 @@
                                 <th>
                                   Course Name
                                 </th>
-                                <th>
-                                  Course Description
-                                </th>
+                                
                                 <th>
                                   Teacher
+                                </th>
+                                <th>
+                                  Lessons
                                 </th>
                                 <th>
                                   Actions
@@ -45,20 +46,23 @@
                                 <td>
                                  {{$item['name']}}
                                 </td>
-                                
-                                <td>
-                                    {{$item['description']}}
-                                </td>
                                 <td>
                                   {{$item['teacher']}}
                               </td>
+                              <td>
+                                <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                  <form action="/admin/lessons/view?courseid={{$item['id']}}" method="POST">@csrf <button type="submit" class="btn btn-outline-secondary btn-sm">View</button> </form>
+                                  <form action="/admin/lessons/create" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Create</button> </form>
+                                </div>
+                            </td>
                                 <td>
                                     <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                      <form action="/admin/viewcourse/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
-                                      <form action="/admin/editcourse/{{$item['id']}}" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary">Edit</button> </form>
-                                      <form action="/admin/deletecourse?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Delete</button> </form>
-                                      <form action="/admin/publishcourse?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary">Publish</button> </form>
+                                      <form action="/admin/viewcourse/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary btn-sm">View</button> </form>
+                                      <form action="/admin/editcourse/{{$item['id']}}" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Edit</button> </form>
+                                      <form action="/admin/deletecourse?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Delete</button> </form>
+                                      <form action="/admin/publishcourse?courseid={{$item['id']}}" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Publish</button> </form>
                                     </div>
                                 </td>
                                 <td class="py-1">

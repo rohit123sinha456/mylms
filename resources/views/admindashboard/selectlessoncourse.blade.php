@@ -22,10 +22,10 @@
                               <thead>
                                 <tr>
                                   <th>
-                                    Lesson Name
+                                    Course Name
                                   </th>
                                   <th>
-                                    Lesson Description
+                                    Course Description
                                   </th>
                                   
                                   <th>

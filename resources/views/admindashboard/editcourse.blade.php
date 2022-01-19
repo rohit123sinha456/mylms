@@ -22,7 +22,7 @@
                             @csrf
                           <div class="form-group">
                             <label for="exampleInputName1">Name</label>
-                            <input type="textarea" class="form-control" id="name" name="name" placeholder="Name" value={{$item->name}}>
+                            <textarea type="text" class="form-control" id="name" name="name" placeholder="Name" value={{$item->name}}></textarea>
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail3">Description</label>

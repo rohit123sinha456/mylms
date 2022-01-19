@@ -84,7 +84,8 @@ class LessonController extends Controller
     public function viewcourselessons(Request $request){
         // use some table or stuff/ try to deal with tables and searchable stuff
         $courseid = $request->query('courseid');
+        $coursename = Course::find($courseid)->name;
         $courselessons = Lesson::where('course_id',$courseid)->get();
-        return view('admindashboard.showlessoncourse',['courses'=>$courselessons]);
+        return view('admindashboard.showlessoncourse',['courses'=>$courselessons,'coursename'=>$coursename]);
     }
 }

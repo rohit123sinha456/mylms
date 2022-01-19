@@ -17,7 +17,7 @@ class CreateLessonTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('title');
-            $table->longText('content');
+            $table->text('content');
             $table->bigInteger('course_id')->unsigned();
             $table->enum('status', ['enabled', 'disabled'])->default('enabled');
 

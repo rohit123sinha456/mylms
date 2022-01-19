@@ -26,7 +26,7 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail3">Content</label>
-                            <input type="text" class="form-control" id="content" name="content" placeholder="Description">
+                            <textarea type="text" class="form-control" id="content" name="content" placeholder="Description"></textarea>
                           </div>
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">Course</label>

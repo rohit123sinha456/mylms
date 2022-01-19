@@ -12,12 +12,17 @@
             <div class="content-wrapper">
               <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
+                  
                     <div class="card">
+                      
                       <div class="card-body">
-                        <h4 class="card-title">Courses </h4>
+                        <h4 class="card-title">{{$coursename}} </h4>
                         <p class="card-description">
-                          Add class <code>.table-striped</code>
+                          All the Lessons 
                         </p>
+                      
+                        <form action="/admin/lessons/create" method="GET"> @csrf<button type="submit" class="btn btn-primary">Create</button> </form>
+                         
                         <div class="table-responsive">
                           <table class="table table-striped">
                             <thead>
