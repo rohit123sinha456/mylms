@@ -36,19 +36,6 @@ class LoginController extends Controller
         $lesson = Lesson::all()->count();
         return view('admin',['teacher'=>$teacher,'student'=>$student,'courses'=>$courses,'lesson'=>$lesson]);
     }
-    /*
-    public function teacherLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:2'
-        ]);
-
-        if (Auth::guard('teacher')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return view('teacher');
-        }
-        return redirect()->route('login');
-    }*/
     public function studentLogin(Request $request)
     {
         $this->validate($request, [
@@ -67,6 +54,27 @@ class LoginController extends Controller
         $courses = Course::all()->count();
         $lesson = Lesson::all()->count();
         return view('student.admin',['courses'=>$courses,'lesson'=>$lesson]);
+    }
+
+
+    public function teacherLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:2'
+        ]);
+
+        if (Auth::guard('teacher')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $teacherid = Teacher::where('email',$request->email)->first();
+            session(['teacher' => Crypt::encryptString($teacherid->id),'teachid'=> Crypt::encryptString($teacherid->id)]);
+            return redirect('/teacher/login');
+        }
+        return redirect('/teacher');
+    }
+    public function showteacherLogin(Request $request){
+        $courses = Course::all()->count();
+        $lesson = Lesson::all()->count();
+        return view('teachers.admin',['courses'=>$courses,'lesson'=>$lesson]);
     }
 }
 

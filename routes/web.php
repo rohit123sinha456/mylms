@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Student\StudentCourseController;
+use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Controllers\Teacher\TeacherLessonController;
+
 use Illuminate\Http\Request;
 
 /*
@@ -20,6 +23,10 @@ use Illuminate\Http\Request;
 |
 */
 Auth::routes();
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+
 Route::get('/admin', function () {
     return view('welcome');
 })->name('login');
@@ -27,6 +34,11 @@ Route::get('/admin', function () {
 Route::get('/student', function () {
     return view('student.loginpage');
 })->name('studentlogin');
+
+Route::get('/teacher', function () {
+    return view('teachers.loginpage');
+})->name('teacherlogin');
+
 
 Route::get('/logout',function(Request $request){
     $request->session()->flush();
@@ -58,10 +70,19 @@ Route::prefix('teacher')->group(function(){
 });
 
 Route::prefix('student')->group(function(){
-    Route::post('/login', [LoginController::class ,'studentLogin'])->name('teacher_login');
+    Route::post('/login', [LoginController::class ,'studentLogin'])->name('student_login');
     Route::get('/login', [LoginController::class ,'showstudentLogin'])->middleware('is_student');
     Route::get('/mycourses', [StudentCourseController::class ,'showcourses'])->middleware('is_student');
     Route::get('/courselessons/{id}', [StudentCourseController::class ,'showcourselessons'])->middleware('is_student');
     Route::get('/viewlessons/{id}', [StudentCourseController::class ,'viewlessons'])->middleware('is_student');
+
+});
+
+Route::prefix('teacher')->group(function(){
+    Route::post('/login', [LoginController::class ,'teacherLogin'])->name('teacher_login');
+    Route::get('/login', [LoginController::class ,'showteacherLogin'])->middleware('is_teacher');
+    Route::get('/courses', [TeacherController::class ,'showcourses'])->middleware('is_teacher');
+    Route::get('/courselessons/{id}', [TeacherController::class ,'showcourselesson'])->middleware('is_teacher');
+    Route::resource('/lessons',TeacherLessonController::class)->middleware('is_teacher');
 
 });

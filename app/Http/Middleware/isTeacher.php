@@ -17,9 +17,9 @@ class isTeacher
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::gaurd('teacher')->check()){
+        if($request->session()->has('teacher')){
             return $next($request);}
             
-            return redirect('/');
+            return redirect('/teacher');
         }
 }

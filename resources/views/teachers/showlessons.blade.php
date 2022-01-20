@@ -7,27 +7,38 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('student.layouts.navbar')
+    @include('layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
               <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
+                  
                     <div class="card">
+                      
                       <div class="card-body">
-                        <h4 class="card-title">Courses </h4>
+                        <h4 class="card-title">{{$coursename}} </h4>
                         <p class="card-description">
-                          Add class <code>.table-striped</code>
+                          All the Lessons 
                         </p>
+                      
+                        <form action="/teacher/lessons/create" method="GET"> @csrf<button type="submit" class="btn btn-primary">Create</button> </form>
+                         
                         <div class="table-responsive">
                           <table class="table table-striped">
                             <thead>
                               <tr>
                                 <th>
-                                  Course 
+                                  Lesson Name
                                 </th>
-                               
                                 <th>
-                                  Action
+                                  Lesson Description
+                                </th>
+                                
+                                <th>
+                                  Actions
+                                </th>
+                                <th>
+                                  Status
                                 </th>
                               </tr>
                             </thead>
@@ -39,10 +50,17 @@
                                 </td>
                                 
                                 <td>
+                                    {{$item['content']}}
+                                </td>
+                                
+                                <td>
                                     <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                      <form action="/student/viewlessons/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
-                                      </div>
+                                      <form action="/teacher/lessons/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary btn-sm">View</button> </form>
+                                      <form action="/teacher/lessons/{{$item['id']}}/edit" method="GET"> @csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Edit</button> </form>
+                                      <form action="/teacher/lessons/{{$item['id']}}" method="POST">@csrf @method('DELETE')<button type="submit" class="btn btn-outline-secondary btn-sm">Delete</button> </form>
+                                      <form action="/teacher/lessons/{{$item['id']}}/publish" method="POST">@csrf<button type="submit" class="btn btn-outline-secondary btn-sm">Publish</button> </form>
+                                    </div>
                                 </td>
                                 <td class="py-1">
                                   {{$item['status']}}

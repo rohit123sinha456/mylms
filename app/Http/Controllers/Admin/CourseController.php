@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Teacher;
 use App\Models\Course;
+use App\Models\CourseTeacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,15 @@ class CourseController extends Controller
     }
     public function createcourses(Request $request){
        $course = new Course;
+       $course_teacher = new CourseTeacher;
        $course->name = $request->name;
        $course->description = $request->desc;
        $course->teacher_id = $request->teacherid;
        $course->save();
+       $course_teacher->course_id = $course->id;
+       $course_teacher->teacher_id = $request->teacherid;
+       $course_teacher->course_name = $request->name;
+       $course_teacher->save();
         return redirect('/admin/courses');
     }
     public function showcreatecourses(Request $request){

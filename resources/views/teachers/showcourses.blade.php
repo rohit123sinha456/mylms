@@ -7,7 +7,7 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('student.layouts.navbar')
+    @include('teachers.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
               <div class="row">
@@ -32,16 +32,16 @@
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach ($lessons as $item)
+                              @foreach ($mycourses as $item)
                               <tr>
                                 <td>
-                                 {{$item['title']}}
+                                 {{$item['course_name']}}
                                 </td>
                                 
                                 <td>
-                                    <input type="hidden" name="courseid" id="courseid" value={{$item['id']}}>
+                                    <input type="hidden" name="courseid" id="courseid" value={{$item['course_id']}}>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                      <form action="/student/viewlessons/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
+                                      <form action="/teacher/courselessons/{{$item['course_id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
                                       </div>
                                 </td>
                                 <td class="py-1">

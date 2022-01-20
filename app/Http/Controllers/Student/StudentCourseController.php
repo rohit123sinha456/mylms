@@ -32,7 +32,7 @@ class StudentCourseController extends Controller
         ->get();
         return view('student.showlessons',['lessons'=>$lessons]);
     }
-    public function viewlessons($id)
+    public function viewlessons(Request $request,$id)
     {
         $lessonid = $id;//$request->query('courseid');
         $lessondetails = Lesson::find($lessonid);
