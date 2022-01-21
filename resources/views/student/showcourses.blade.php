@@ -42,7 +42,8 @@
                                     <input type="hidden" name="courseid" id="courseid" value={{$item['course_id']}}>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                       <form action="/student/courselessons/{{$item['course_id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">View</button> </form>
-                                      </div>
+                                      <!--form action="/student/showtopics/{/**$item['course_id']*/}}" method="GET"> <button type="submit" class="btn btn-outline-secondary">Discussion</button> </form-->
+                                    </div>
                                 </td>
                                 <td class="py-1">
                                   {{$item['status']}}

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\CourseUser;
+use App\Actions\TopicAction;
+use App\Actions\Reply;
+use App\Actions\Discussion;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -39,5 +42,11 @@ class StudentCourseController extends Controller
         $coloumns = Schema::getColumnListing('lessons');
         return view('student.viewlesson',['item'=>$lessondetails,'column'=>$coloumns]);
         
+    }
+
+    public function showtopics($id)
+    {
+        $topics = TopicAction::getTopic($id);
+        return view('student.showtopics',['topics'=>$topics]);
     }
 }

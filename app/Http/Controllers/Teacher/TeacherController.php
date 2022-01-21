@@ -11,6 +11,9 @@ use App\Models\CourseTeacher;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+
+
 use App\Http\Controllers\Controller;
 class TeacherController extends Controller
 {

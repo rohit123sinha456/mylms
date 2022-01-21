@@ -10,6 +10,21 @@
     @include('student.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+                       
               <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">

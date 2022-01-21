@@ -75,8 +75,9 @@ Route::prefix('student')->group(function(){
     Route::get('/mycourses', [StudentCourseController::class ,'showcourses'])->middleware('is_student');
     Route::get('/courselessons/{id}', [StudentCourseController::class ,'showcourselessons'])->middleware('is_student');
     Route::get('/viewlessons/{id}', [StudentCourseController::class ,'viewlessons'])->middleware('is_student');
+    //Route::get('/showtopics/{id}', [StudentCourseController::class ,'showtopics'])->middleware('is_student');
 
-});
+});//showtopics
 
 Route::prefix('teacher')->group(function(){
     Route::post('/login', [LoginController::class ,'teacherLogin'])->name('teacher_login');

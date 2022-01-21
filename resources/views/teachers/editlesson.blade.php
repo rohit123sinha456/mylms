@@ -7,7 +7,7 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('layouts.navbar')
+    @include('teachers.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
               <div class="row">
