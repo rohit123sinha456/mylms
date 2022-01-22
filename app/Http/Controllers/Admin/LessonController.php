@@ -33,6 +33,8 @@ class LessonController extends Controller
         $lesson->title = $request->title;
         $lesson->content = $request->content;
         $lesson->course_id = $request->courseid;
+        $lesson->video = $request->video;
+        $lesson->material = $request->material;
         $lesson->save();
         $lessonid = $lesson->id;
         return redirect('/admin/lessons/'.$lessonid);
@@ -61,6 +63,8 @@ class LessonController extends Controller
         $lessondetails = Lesson::find($id);
         $lessondetails->title = $request->title;
         $lessondetails->content = $request->content;
+        $lessondetails->video = $request->video;
+        $lessondetails->material = $request->material;
         $lessondetails->save();
         return redirect('/admin/lessons/'.$id);
     }

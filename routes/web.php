@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Student\StudentCourseController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Teacher\TeacherLessonController;
+use App\Http\Controllers\Teacher\TeacherTestController;
+use App\Http\Controllers\Teacher\TeacherQuestionController;
+
 
 use Illuminate\Http\Request;
 
@@ -76,6 +79,8 @@ Route::prefix('student')->group(function(){
     Route::get('/courselessons/{id}', [StudentCourseController::class ,'showcourselessons'])->middleware('is_student');
     Route::get('/viewlessons/{id}', [StudentCourseController::class ,'viewlessons'])->middleware('is_student');
     //Route::get('/showtopics/{id}', [StudentCourseController::class ,'showtopics'])->middleware('is_student');
+    Route::get('/showlessonvideo/{id}', [StudentCourseController::class ,'showlessonvideo'])->middleware('is_student');
+    Route::get('/showlessonmaterial/{id}', [StudentCourseController::class ,'showlessonmaterial'])->middleware('is_student');
 
 });//showtopics
 
@@ -85,5 +90,13 @@ Route::prefix('teacher')->group(function(){
     Route::get('/courses', [TeacherController::class ,'showcourses'])->middleware('is_teacher');
     Route::get('/courselessons/{id}', [TeacherController::class ,'showcourselesson'])->middleware('is_teacher');
     Route::resource('/lessons',TeacherLessonController::class)->middleware('is_teacher');
+    Route::get('/coursetests',[TeacherTestController::class,'showcoursestest'])->middleware('is_teacher');
+    Route::post('/alltest',[TeacherTestController::class,'index'])->middleware('is_teacher');
+    Route::resource('/test',TeacherTestController::class,['except' => ['index','edit','update','publish','create']])->middleware('is_teacher');
+    Route::post('/test/createquestion',[TeacherQuestionController::class,'store'])->middleware('is_teacher');
+    Route::post('/test/deletequestion/{id}',[TeacherQuestionController::class,'destroy'])->middleware('is_teacher');
 
+});
+Route::get('/test',function(){
+    return view('teachers.test');
 });

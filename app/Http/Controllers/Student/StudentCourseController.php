@@ -49,4 +49,13 @@ class StudentCourseController extends Controller
         $topics = TopicAction::getTopic($id);
         return view('student.showtopics',['topics'=>$topics]);
     }
+
+    public function showlessonvideo($id){
+        $videolink = Lesson::find($id);
+        return view('student.lessonvideo',['item'=>$videolink,'link'=>$videolink->video]);
+    }
+    public function showlessonmaterial($id){
+        $videolink = Lesson::find($id);
+        return view('student.lessonmaterial',['item'=>$videolink,'link'=>$videolink->material]);
+    }
 }

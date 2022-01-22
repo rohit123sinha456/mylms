@@ -7,55 +7,52 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('student.layouts.navbar')
+    @include('teachers.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Details</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonvideo/{{$item->id}}">Video</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonmaterial/{{$item->id}}">Study Material</a>
-                </li>
-              </ul>
-                       
               <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title"> </h4>
+                        <h4 class="card-title">Course Tests </h4>
                         <p class="card-description">
-                          
+                         Select Course for their tests</code>
                         </p>
                         <div class="table-responsive">
                           <table class="table table-striped">
                             <thead>
                               <tr>
                                 <th>
-                                  Particulars
+                                  Course 
                                 </th>
+                               
                                 <th>
-                                  Details
+                                  tests
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach ($column as $colname)
-                            <tr>
-                              <td>
-                               {{$colname}}
-                              </td>
-                              <td>
-                               {{$item->$colname}}
-                              </td>
-                            </tr>
-                            @endforeach
-                              
+                              @foreach ($mycourses as $item)
+                              <tr>
+                                <td>
+                                 {{$item['course_name']}}
+                                </td>
+                                
+                                <td>
+                                    <input type="hidden" name="courseid" id="courseid" value={{$item['course_id']}}>
+                                    <input type="hidden" name="coursename" id="coursename" value={{$item['course_name']}}>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                      <form action="/teacher/alltest?courseid={{$item['course_id']}}" method="POST"> @csrf<button type="submit" class="btn btn-outline-secondary">View</button> </form>
+                                      </div>
+                                </td>
+                                <td class="py-1">
+                                  {{$item['status']}}
+                                </td>
+                              </tr>
+                              @endforeach
                             </tbody>
                           </table>
+                      
                         </div>
                       </div>
                     </div>

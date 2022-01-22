@@ -12,10 +12,10 @@
             <div class="content-wrapper">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Details</a>
+                  <a class="nav-link" href="/student/viewlessons/{{$item->id}}">Details</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonvideo/{{$item->id}}">Video</a>
+                  <a class="nav-link active" href="#">Video</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/student/showlessonmaterial/{{$item->id}}">Study Material</a>
@@ -35,25 +35,17 @@
                             <thead>
                               <tr>
                                 <th>
-                                  Particulars
+                                  Video Link
                                 </th>
-                                <th>
-                                  Details
-                                </th>
+                               
                               </tr>
                             </thead>
                             <tbody>
-                            @foreach ($column as $colname)
                             <tr>
                               <td>
-                               {{$colname}}
+                               {{$link}}
                               </td>
-                              <td>
-                               {{$item->$colname}}
-                              </td>
-                            </tr>
-                            @endforeach
-                              
+                            </tr>                        
                             </tbody>
                           </table>
                         </div>

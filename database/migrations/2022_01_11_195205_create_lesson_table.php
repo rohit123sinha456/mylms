@@ -18,6 +18,8 @@ class CreateLessonTable extends Migration
 
             $table->string('title');
             $table->text('content');
+            $table->text('video');
+            $table->text('material');
             $table->bigInteger('course_id')->unsigned();
             $table->enum('status', ['enabled', 'disabled'])->default('enabled');
 

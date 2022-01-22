@@ -29,6 +29,14 @@
                             <textarea type="text" class="form-control" id="content" name="content" placeholder="Description"></textarea>
                           </div>
                           <div class="form-group">
+                            <label for="exampleInputEmail3">Video Link</label>
+                            <textarea type="text" class="form-control" id="video" name="video" placeholder="Description"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail3">Material</label>
+                            <textarea type="text" class="form-control" id="material" name="material" placeholder="Description"></textarea>
+                          </div>
+                          <div class="form-group">
                             <label for="exampleFormControlSelect1">Course</label>
                             <select class="form-control form-control-lg" id="courseid" name="courseid">
                                 @foreach ($course as $item)

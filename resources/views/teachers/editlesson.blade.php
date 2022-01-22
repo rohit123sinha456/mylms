@@ -29,6 +29,14 @@
                             <label for="exampleInputEmail3">Content</label>
                             <textarea class="form-control" id="exampleTextarea1" rows="4" id="content" name="content">{{$item->content}}</textarea>
                         </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail3">Video</label>
+                          <textarea class="form-control" id="exampleTextarea1" rows="4" id="video" name="video">{{$item->video}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Material</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" id="material" name="material">{{$item->material}}</textarea>
+                    </div>
                           
                           <button type="submit" class="btn btn-primary mr-2">Submit</button>
                           <a class="btn btn-light" href="/admin/courses">Cancel</a>
