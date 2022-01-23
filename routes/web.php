@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Student\StudentCourseController;
+use App\Http\Controllers\Student\StudentTestController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Teacher\TeacherLessonController;
 use App\Http\Controllers\Teacher\TeacherTestController;
@@ -81,6 +82,10 @@ Route::prefix('student')->group(function(){
     //Route::get('/showtopics/{id}', [StudentCourseController::class ,'showtopics'])->middleware('is_student');
     Route::get('/showlessonvideo/{id}', [StudentCourseController::class ,'showlessonvideo'])->middleware('is_student');
     Route::get('/showlessonmaterial/{id}', [StudentCourseController::class ,'showlessonmaterial'])->middleware('is_student');
+    Route::get('/coursetest', [StudentTestController::class ,'showcoursetest'])->middleware('is_student');
+    Route::get('/coursetest/{id}', [StudentTestController::class ,'showtests'])->middleware('is_student');
+    Route::get('/test/{id}', [StudentTestController::class ,'showquestions'])->middleware('is_student');
+    Route::post('/test/submit/{id}', [StudentTestController::class ,'submittest'])->middleware('is_student');
 
 });//showtopics
 

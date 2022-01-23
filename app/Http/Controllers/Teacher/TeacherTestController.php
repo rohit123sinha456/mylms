@@ -28,12 +28,6 @@ class TeacherTestController extends Controller
         $tests = Test::where('course_id',$courseid)->get();
         return view('teachers.showtestsforcourse',['tests'=>$tests,'coursename'=>$coursename->name,'courseid'=>$courseid]);
     }
-    public function create(Request $request)
-    {
-        //$newtest = new Test;
-        
-    }
-    
     public function store(Request $request)
     {
         $newtest = new Test;
@@ -45,13 +39,23 @@ class TeacherTestController extends Controller
     }
     public function show($id)
     {
+        $details = array();
        $questions = Questions::where('test_id',$id)->get();
-       return view ('teachers.showquestions',['questions'=>$questions,'testid'=>$id]);
-        
+       
+       foreach($questions as $question){
+           $answers = Answers::where('question_id',$question->id)->get();
+           $details[] = $details + array('id'=>$question->id,'question'=>$question->question,'answer'=>$answers);
+       }
+       
+       //dd($details);
+       return view ('teachers.showquestions',['questions'=>$details,'testid'=>$id]);
+       
     }
     
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        
+        $test = Test::destroy($id);
+        $courseid = $request->courseid;
+        return redirect('/teacher/createquestion');
     }
 }

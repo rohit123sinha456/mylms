@@ -7,7 +7,7 @@
     <div class="container-scroller">
         @include('layouts.topnav')
     <div class="container-fluid page-body-wrapper">
-    @include('teachers.layouts.navbar')
+    @include('student.layouts.navbar')
         <div class="main-panel">
             <div class="content-wrapper">
                 
@@ -19,17 +19,19 @@
                       <div class="card-body">
                         <h4 class="card-title">Search Course Lessons</h4>
                         <p class="card-description">
-                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#defaultModal">Create Test</button>
                          
                           <div class="table-responsive">
                             <table class="table table-striped">
                               <thead>
                                 <tr>
                                   <th>
-                                    Course Name
+                                    Test Name
                                   </th>
                                   <th>
                                     Questions
+                                  </th>
+                                  <th>
+                                    Previous Marks
                                   </th>
                                 </tr>
                               </thead>
@@ -43,52 +45,17 @@
                                   <td>
                                       <input type="hidden" name="testid" id="testid" value={{$item['id']}}>
                                       <div class="btn-group" role="group" aria-label="Basic example">
-                                        <form action="/teacher/test/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary btn-sm">View</button> </form>
-                                        <form action="/teacher/test/{{$item['id']}}" method="POST">
-                                          @csrf 
-                                          @method('DELETE')
-                                          <input type="hidden" name="courseid" id="courseid" value={{$courseid}}>
-                                          <button type="submit" class="btn btn-outline-secondary btn-sm">Delete</button> </form>
+                                        <form action="/student/test/{{$item['id']}}" method="GET"> <button type="submit" class="btn btn-outline-secondary btn-sm">Take Tests</button> </form>
                                     </div>
                                   </td>
+                                  <td>
+                                    {{$result[$item->id]}}
+                                   </td>
                                 </tr>
                                 @endforeach
                       </tbody>
                     </table>
-                  
-
-
-
-
-                    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Test for  {{$coursename}}</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="forms-sample" action="/teacher/test" method="POST">
-                                    @csrf
-                                  <div class="form-group">
-                                    <label for="exampleInputName1">Title</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                                  </div>
-                                  <input type="hidden" class="form-control" id="courseid" name="courseid" value={{$courseid}}>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">Save changes</button> 
-                             </div>
-                        </form>
-                            </div>
-                          </div>
-                        </div>
-                     
-
-
-
+          
 
                   </div>
                       </div>

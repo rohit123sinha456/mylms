@@ -23,6 +23,20 @@ class TeacherQuestionController extends Controller
        $newquestion->question = $request->question;
        $newquestion->test_id = $request->testid;
        $newquestion->save();
+        $ans = $request->answers;
+       for($i=0;$i<4;$i++){
+        $answers = New Answers;
+        $answers->question_id = $newquestion->id;
+        $answers->answers = $ans[$i];
+        if($i == ($request->correct-1)){
+            $answers->correct = true;
+        }
+        else{
+            $answers->correct = false;
+        }
+        $answers->save();
+       }
+       
        return redirect('/teacher/test/'.$request->testid);
         
     }

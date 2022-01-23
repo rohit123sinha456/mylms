@@ -16,35 +16,30 @@
                       <div class="card-body">
                         <h4 class="card-title">Course Tests </h4>
                         <p class="card-description">
-                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#defaultModal">Create Question</button>
 
                         </p>
                        
-                       
-                        <div id="accordion" class="accordion" role="tablist" aria-multiselectable="true">
+                        <form action="/student/test/submit/{{$testid}}" method="POST">
                             @foreach ($questions as $item)
                                 
                            
                             <div class="card">
                               <div class="card-header" role="tab" id="headingThree">
                                 <h5 class="mb-0">
-                                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                   {{$item['question']}}
-                                  </a>
+                                  
                                 </h5>
                               </div>
-                              <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                              <div id="collapseThree"  role="tabpanel" aria-labelledby="headingThree">
                                 <div class="card-body">
                                   <ul>
                                    @foreach ($item['answer'] as $ans)
-                                       <li>{{$ans->answers}}</li>
+                                   <input type="radio" id={{$ans->answers}} name={{$item['id']}} value={{$ans->id}}>
+                                   <label for={{$ans->answers}}>{{$ans->answers}}</label><br>
+                                       
                                    @endforeach
                                   </ul>
-                                <form action="/teacher/test/deletequestion/{{$item['id']}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" class="form-control" id="testid" name="testid" value={{$testid}}>
-                                    <button type="submit" class="btn btn-outline-secondary btn-sm">Delete</button> 
-                                </form>
+                                
 
                                 </div>
                               </div>
@@ -52,9 +47,12 @@
 
                             @endforeach
 
-                          </div>
 
-
+                            
+                              @csrf
+                              <input type="hidden" class="form-control" id="testid" name="testid" value={{$testid}}>
+                              <button type="submit" class="btn btn-outline-secondary btn-sm">Submit</button> 
+                          </form>
 
 
 
