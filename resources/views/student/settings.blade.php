@@ -12,13 +12,10 @@
             <div class="content-wrapper">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Details</a>
+                  <a class="nav-link active" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonvideo/{{$item->id}}">Video</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonmaterial/{{$item->id}}">Study Material</a>
+                  <a class="nav-link" href="/student/passwordreset">Change Password</a>
                 </li>
               </ul>
                        
@@ -31,32 +28,32 @@
                           
                         </p>
                         <div class="table-responsive">
-                          <table class="table table-striped">
-                            <thead>
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>
+                                    Particulars
+                                  </th>
+                                  <th>
+                                    Details
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              @foreach ($column as $colname)
                               <tr>
-                                <th>
-                                  Particulars
-                                </th>
-                                <th>
-                                  Details
-                                </th>
+                                <td>
+                                 {{$colname}}
+                                </td>
+                                <td>
+                                 {{$item->$colname}}
+                                </td>
                               </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($column as $colname)
-                            <tr>
-                              <td>
-                               {{$colname}}
-                              </td>
-                              <td>
-                               {{$item->$colname}}
-                              </td>
-                            </tr>
-                            @endforeach
-                              
-                            </tbody>
-                          </table>
-                        </div>
+                              @endforeach
+                                
+                              </tbody>
+                            </table>
+                          </div>
                       </div>
                     </div>
                   </div>

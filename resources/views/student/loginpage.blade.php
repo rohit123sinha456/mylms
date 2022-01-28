@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('student.layouts.header')
 <!DOCTYPE html>
 <html lang="en">
 

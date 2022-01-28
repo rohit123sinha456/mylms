@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
@@ -54,6 +54,27 @@ class LoginController extends Controller
         $courses = Course::all()->count();
         $lesson = Lesson::all()->count();
         return view('student.admin',['courses'=>$courses,'lesson'=>$lesson]);
+    }
+    public function showstudentSettings(Request $request){
+        $studentid = Crypt::decryptString($request->session()->get('student'));
+        $studentdetails = User::find($studentid);
+        unset($studentdetails['password']);
+        $coloumns = Schema::getColumnListing('users');
+        unset($coloumns['password']);
+        return view('student.settings',['item'=>$studentdetails,'column'=>$coloumns]);
+    }
+    public function studentPasswordReset(Request $request){
+        $this->validate($request, [
+            'password' => 'confirmed|min:6'
+        ]);
+        $studentid = Crypt::decryptString($request->session()->get('student'));
+        $studentdetails = User::find($studentid);
+        $studentdetails->password = bcrypt($request->password);
+        $studentdetails->save();
+        return redirect('/student/settings');
+    }
+    public function showstudentPasswordReset(Request $request){
+        return view('student.passwordreset');
     }
 
 

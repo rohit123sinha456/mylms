@@ -1,11 +1,11 @@
-@extends('layouts.header')
+@extends('student.layouts.header')
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     @yield('header')
     <div class="container-scroller">
-        @include('layouts.topnav')
+        @include('student.layouts.topnav')
     <div class="container-fluid page-body-wrapper">
     @include('teachers.layouts.navbar')
         <div class="main-panel">

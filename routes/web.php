@@ -76,6 +76,9 @@ Route::prefix('teacher')->group(function(){
 Route::prefix('student')->group(function(){
     Route::post('/login', [LoginController::class ,'studentLogin'])->name('student_login');
     Route::get('/login', [LoginController::class ,'showstudentLogin'])->middleware('is_student');
+    Route::get('/settings', [LoginController::class ,'showstudentSettings'])->middleware('is_student');
+    Route::get('/passwordreset', [LoginController::class ,'showstudentPasswordReset'])->middleware('is_student');
+    Route::post('/passwordreset', [LoginController::class ,'studentPasswordReset'])->middleware('is_student');
     Route::get('/mycourses', [StudentCourseController::class ,'showcourses'])->middleware('is_student');
     Route::get('/courselessons/{id}', [StudentCourseController::class ,'showcourselessons'])->middleware('is_student');
     Route::get('/viewlessons/{id}', [StudentCourseController::class ,'viewlessons'])->middleware('is_student');

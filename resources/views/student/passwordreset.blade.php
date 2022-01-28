@@ -12,13 +12,10 @@
             <div class="content-wrapper">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Details</a>
+                  <a class="nav-link" href="/student/settings">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonvideo/{{$item->id}}">Video</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/student/showlessonmaterial/{{$item->id}}">Study Material</a>
+                  <a class="nav-link active" href="#">Change Password</a>
                 </li>
               </ul>
                        
@@ -30,33 +27,21 @@
                         <p class="card-description">
                           
                         </p>
-                        <div class="table-responsive">
-                          <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th>
-                                  Particulars
-                                </th>
-                                <th>
-                                  Details
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($column as $colname)
-                            <tr>
-                              <td>
-                               {{$colname}}
-                              </td>
-                              <td>
-                               {{$item->$colname}}
-                              </td>
-                            </tr>
-                            @endforeach
-                              
-                            </tbody>
-                          </table>
+                        <form class="forms-sample" action="/student/passwordreset" method="POST">
+                          @csrf
+                        <div class="form-group">
+                          <label for="exampleInputName1">Password</label>
+                          <input type="text" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail3">Confirm Password</label>
+                          <input type="text" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      </form>
+                      @if($errors->any())
+                          {!! implode('', $errors->all('<div>:message</div>')) !!}
+                      @endif
                       </div>
                     </div>
                   </div>
